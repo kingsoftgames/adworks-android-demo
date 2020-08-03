@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "1073158149379",
+    "firebase_url": "https://adworkstest-bbf5e.firebaseio.com",
+    "project_id": "adworkstest-bbf5e",
+    "storage_bucket": "adworkstest-bbf5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073158149379:android:33546a5a80ed756959c536",
+        "android_client_info": {
+          "package_name": "com.example.adworksdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073158149379-5hnuvlr6g41suob9vc3tevjq52bsg7l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDap-yNtxGzAn5Z5UWrzrbcy9CjV2wYd0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073158149379-5hnuvlr6g41suob9vc3tevjq52bsg7l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073158149379:android:6dd256cde8eb793859c536",
+        "android_client_info": {
+          "package_name": "com.kingsoft.shiyou.adworks.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073158149379-5hnuvlr6g41suob9vc3tevjq52bsg7l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDap-yNtxGzAn5Z5UWrzrbcy9CjV2wYd0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073158149379-5hnuvlr6g41suob9vc3tevjq52bsg7l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1073158149379:android:96f8802b3689f9f059c536",
+        "android_client_info": {
+          "package_name": "com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1073158149379-5hnuvlr6g41suob9vc3tevjq52bsg7l2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDap-yNtxGzAn5Z5UWrzrbcy9CjV2wYd0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1073158149379-5hnuvlr6g41suob9vc3tevjq52bsg7l2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
