@@ -1,4 +1,4 @@
-package com.sukhavati.gotoplaying;
+package com.adworks.android;
 
 import android.content.Context;
 

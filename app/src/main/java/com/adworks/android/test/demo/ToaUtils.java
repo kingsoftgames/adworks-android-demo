@@ -1,4 +1,4 @@
-package com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi;
+package com.adworks.android.test.demo;
 
 import android.content.Context;
 import android.widget.Toast;

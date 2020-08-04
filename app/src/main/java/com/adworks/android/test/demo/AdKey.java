@@ -1,4 +1,4 @@
-package com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi;
+package com.adworks.android.test.demo;
 
 public class AdKey {
 

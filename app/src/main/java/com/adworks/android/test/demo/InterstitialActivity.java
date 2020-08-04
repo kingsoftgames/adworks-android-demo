@@ -1,10 +1,11 @@
-package com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi;
+package com.adworks.android.test.demo;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
