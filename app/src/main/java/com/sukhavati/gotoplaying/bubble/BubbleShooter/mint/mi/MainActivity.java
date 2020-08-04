@@ -25,6 +25,102 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
     private Button mRewardButton;
     private AdWorks adWorks = AdWorks.getInstance();
+    private IAdLoadListener bannerCallback=new IAdLoadListener() {
+        @Override
+        public void onAdClosed() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_close));
+        }
+
+        @Override
+        public void onAdFailedToLoad(int errorCode) {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_load_fail));
+        }
+
+        @Override
+        public void onAdFailedToShow(int errorCode) {
+
+        }
+
+        @Override
+        public void onAdLeaveApplication() {
+
+        }
+
+
+        @Override
+        public void onAdOpened() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_open));
+        }
+
+        @Override
+        public void onAdLoaded() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_loaded));
+        }
+
+        @Override
+        public void onAdClicked() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_click));
+        }
+
+        @Override
+        public void onAdImpression() {
+
+        }
+
+        @Override
+        public void onUserEarnedReward() {
+
+        }
+    };
+    private IAdLoadListener rewardCallback=new IAdLoadListener() {
+        @Override
+        public void onAdClosed() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_close));
+        }
+
+        @Override
+        public void onAdFailedToLoad(int errorCode) {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_load_fail));
+
+        }
+
+        @Override
+        public void onAdFailedToShow(int errorCode) {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_open_fail));
+        }
+
+        @Override
+        public void onAdLeaveApplication() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_left_app));
+        }
+
+
+        @Override
+        public void onAdOpened() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_open));
+
+        }
+
+        @Override
+        public void onAdLoaded() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_loaded));
+        }
+
+        @Override
+        public void onAdClicked() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_click));
+        }
+
+        @Override
+        public void onAdImpression() {
+
+        }
+
+        @Override
+        public void onUserEarnedReward() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_complete));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +158,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
+                if (hasInitialized){
+                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback);
+                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback);
+                    changeBtnClickState();
+                    setAdKeyForPlatform();
+                }
             }
         });
-        changeBtnClickState();
-        setAdKeyForPlatform();
+
     }
 
     private void changeBtnClickState() {
@@ -90,110 +191,13 @@ public class MainActivity extends AppCompatActivity {
         if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId)) {
             adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout);
         }
-        adWorks.loadBannerAd(this, activePlatformBannerId, new IAdLoadListener() {
-            @Override
-            public void onAdClosed() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_close));
-            }
 
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_load_fail));
-            }
-
-            @Override
-            public void onAdFailedToShow(int errorCode) {
-
-            }
-
-            @Override
-            public void onAdLeaveApplication() {
-
-            }
-
-
-            @Override
-            public void onAdOpened() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_open));
-            }
-
-            @Override
-            public void onAdLoaded() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_loaded));
-            }
-
-            @Override
-            public void onAdClicked() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_banner_click));
-            }
-
-            @Override
-            public void onAdImpression() {
-
-            }
-
-            @Override
-            public void onUserEarnedReward() {
-
-            }
-        });
     }
 
     private void testReward() {
         if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId)) {
             adWorks.showRewardAd(this, activePlatformRewardId);
         }
-        adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, new IAdLoadListener() {
-            @Override
-            public void onAdClosed() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_close));
-            }
-
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_load_fail));
-
-            }
-
-            @Override
-            public void onAdFailedToShow(int errorCode) {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_open_fail));
-            }
-
-            @Override
-            public void onAdLeaveApplication() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_left_app));
-            }
-
-
-            @Override
-            public void onAdOpened() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_open));
-
-            }
-
-            @Override
-            public void onAdLoaded() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_loaded));
-            }
-
-            @Override
-            public void onAdClicked() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_click));
-            }
-
-            @Override
-            public void onAdImpression() {
-
-            }
-
-            @Override
-            public void onUserEarnedReward() {
-                ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_complete));
-            }
-        });
-
-
     }
 
 }
