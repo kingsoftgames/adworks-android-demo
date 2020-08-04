@@ -11,31 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btnAdmob"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/string_init_admob" />
-        <Button
-            android:id="@+id/btnIronSource"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/string_init_ironsource" />
-    </LinearLayout>
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/activePlatform"
-        android:text="@string/string_current_ad_platform"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
     <Button
         android:enabled="false"
         android:id="@+id/btn_in"
@@ -49,6 +24,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/string_ad_banner" />
+        <Button
+            android:enabled="false"
+            android:id="@+id/btn_re"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/string_ad_reward_video" />
     </LinearLayout>
 
 

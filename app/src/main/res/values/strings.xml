@@ -10,6 +10,7 @@
     <string name="string_reward_video_load_fail">激励加载失败</string>
     <string name="string_reward_video_left_app">激励离开应用</string>
     <string name="string_reward_video_open">激励打开</string>
+    <string name="string_reward_video_open_fail">激励展示失败</string>
     <string name="string_reward_video_loaded">激励加载成功</string>
     <string name="string_reward_video_click">激励点击</string>
     <string name="string_reward_video_complete">激励播放完成可以获得奖励！</string>
