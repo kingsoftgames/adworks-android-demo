@@ -12,7 +12,7 @@
     <string name="string_reward_video_open">激励打开</string>
     <string name="string_reward_video_loaded">激励加载成功</string>
     <string name="string_reward_video_click">激励点击</string>
-    <string name="string_reward_video_complete">激励播放完成</string>
+    <string name="string_reward_video_complete">激励播放完成可以获得奖励！</string>
     <string name="string_banner_close">banner关闭</string>
     <string name="string_banner_load_fail">banner加载失败</string>
     <string name="string_banner_left_app">banner离开应用</string>
@@ -22,7 +22,7 @@
     <string name="string_init_admob">初始化为admob</string>
     <string name="string_init_ironsource">初始化为IronSource</string>
     <string name="string_current_ad_platform">当前初始化广告平台</string>
-    <string name="string_ad_interstitial">插屏</string>
-    <string name="string_ad_reward_video">激励视频</string>
-    <string name="string_ad_banner">banner</string>
+    <string name="string_ad_interstitial">跳转页面显示插屏</string>
+    <string name="string_ad_reward_video">观看激励视频可以获得奖励哦</string>
+    <string name="string_ad_banner">显示底部banner</string>
 </resources>
