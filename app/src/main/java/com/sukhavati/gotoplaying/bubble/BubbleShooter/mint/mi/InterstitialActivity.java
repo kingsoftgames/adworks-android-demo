@@ -31,7 +31,10 @@ public class InterstitialActivity extends AppCompatActivity {
         mRewardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                testReward();
+                if (!TextUtils.isEmpty(activePlatformRewardId)){
+                    testReward();
+                }
+
             }
         });
     }
