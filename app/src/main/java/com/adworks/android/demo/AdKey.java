@@ -1,4 +1,4 @@
-package com.adworks.android.test.demo;
+package com.adworks.android.demo;
 
 public class AdKey {
 

@@ -1,4 +1,4 @@
-package com.adworks.android.test.demo;
+package com.adworks.android.demo;
 
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +68,7 @@ public class InterstitialActivity extends AppCompatActivity {
                 finish();
             }
         });
-        activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
+        activePlatformInterstiticalId = AdKey.TEST_IRONSOURCE_INTERSTITICAL_ID;
         adWorks.loadInterstitialAd(this, activePlatformInterstiticalId, interstitialCallback);
         testInterstitial();
     }

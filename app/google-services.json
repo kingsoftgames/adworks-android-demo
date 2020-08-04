@@ -68,7 +68,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1073158149379:android:96f8802b3689f9f059c536",
         "android_client_info": {
-          "package_name": "com.adworks.android.test.demo"
+          "package_name": "com.adworks.android.demo"
         }
       },
       "oauth_client": [

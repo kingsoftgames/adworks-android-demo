@@ -1,6 +1,5 @@
-package com.adworks.android.test.demo;
+package com.adworks.android.demo;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -19,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
 
-    private String activePlatform = ADMOB_PLATFORM_APPID;
+    private String activePlatform = IRONSOURCE_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
     private String activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
+    private String activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
     private Button mInterstiticalButton, mBannerButton;
     private FrameLayout frameLayout;
     private Button mRewardButton;
@@ -122,7 +122,49 @@ public class MainActivity extends AppCompatActivity {
             ToaUtils.toastShort(MainActivity.this, getString(R.string.string_reward_video_complete));
         }
     };
+    private IAdLoadListener interstitialCallback=new IAdLoadListener() {
+        @Override
+        public void onAdClosed() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_interstitial_close));
+        }
 
+        @Override
+        public void onAdFailedToLoad(int errorCode) {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_interstitial_load_fail));
+        }
+
+        @Override
+        public void onAdFailedToShow(int errorCode) {
+        }
+
+        @Override
+        public void onAdLeaveApplication() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_interstitial_left_app));
+        }
+
+        @Override
+        public void onAdOpened() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_interstitial_open));
+        }
+
+        @Override
+        public void onAdLoaded() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_interstitial_load_success));
+        }
+
+        @Override
+        public void onAdClicked() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_interstitial_click));
+        }
+
+        @Override
+        public void onAdImpression() {
+        }
+
+        @Override
+        public void onUserEarnedReward() {
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,12 +173,13 @@ public class MainActivity extends AppCompatActivity {
         mInterstiticalButton = findViewById(R.id.btn_in);
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
-        initAdworks(ADMOB_PLATFORM_APPID);
+        initAdworks(IRONSOURCE_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, InterstitialActivity.class);
-                startActivity(intent);
+                testInterstitial();
+//                Intent intent = new Intent(MainActivity.this, InterstitialActivity.class);
+//                startActivity(intent);
             }
         });
         mBannerButton.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +198,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAdworks(String appId) {
         activePlatform = appId;
+        setAdKeyForPlatform();
         adWorks.initAdWorkds(MainActivity.this, appId, new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
@@ -162,8 +206,8 @@ public class MainActivity extends AppCompatActivity {
                 if (hasInitialized){
                     adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback);
                     adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback);
+                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback);
                     changeBtnClickState();
-                    setAdKeyForPlatform();
                 }
             }
         });
@@ -180,10 +224,12 @@ public class MainActivity extends AppCompatActivity {
         if (activePlatform.equals(IRONSOURCE_PLATFORM_APPID)) {
             activePlatformBannerId = AdKey.TEST_IRONSOURCE_BANNER_ID;
             activePlatformRewardId = AdKey.TEST_IRONSOURCE_REWARD_ID;
+            activePlatformInterstiticalId=AdKey.TEST_IRONSOURCE_INTERSTITICAL_ID;
         }
         if (activePlatform.equals(ADMOB_PLATFORM_APPID)) {
             activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
             activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
+            activePlatformInterstiticalId=AdKey.TEST_ADMOB_INTERSTITICAL_ID;
         }
     }
 
@@ -198,6 +244,11 @@ public class MainActivity extends AppCompatActivity {
     private void testReward() {
         if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId)) {
             adWorks.showRewardAd(this, activePlatformRewardId);
+        }
+    }
+    private void testInterstitial() {
+        if (adWorks.isAdReady(this, activePlatformInterstiticalId)) {
+            adWorks.showInterstitialAd(this, activePlatformInterstiticalId);
         }
     }
 
