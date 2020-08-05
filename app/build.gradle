@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi"
+        applicationId "com.adworks.android.demo"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
