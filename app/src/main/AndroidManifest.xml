@@ -10,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.adworks.android.demo.InterstitialActivity"></activity>
         <activity android:name="com.adworks.android.demo.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +22,9 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-4638173289828736~2971951308"
             tools:replace="android:value" />
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="_r63Ozwv0Q3pB36qHicpG1yCsTbEpH_fsc-Wq5oI1wZsrs_rx-mnZT5RJTmelL7_OHieFwTbpXS3rWeSaqhUVr" />
     </application>
 
 </manifest>

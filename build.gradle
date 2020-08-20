@@ -6,11 +6,15 @@ buildscript {
         maven{
             url 'https://maven.fabric.io/public'
         }
+        repositories {
+            maven { url 'https://applovin.bintray.com/Quality-Service' }
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.0"
         classpath 'com.google.gms:google-services:4.2.0'
         classpath 'io.fabric.tools:gradle:1.28.0'
+        classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:3.+"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -20,10 +24,6 @@ allprojects {
     repositories {
         maven {
             url 'https://maven-mirror.shiyou.kingsoft.com/repository/public/'
-        }
-        // ironsource 中介功能
-        maven {
-            url 'https://dl.bintray.com/ironsource-mobile/android-adapters'
         }
         google()
         jcenter()

@@ -1,13 +1,16 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
-
+apply plugin: 'applovin-quality-service'
+applovin {
+    apiKey "vWpyv2a1519rKT6fTdwN0Qir9dohAUvA8Zw6vLx8777wuKLJmbEIGaoOPoUETBDUq4hsGkWh6zDEh5iwwvLB3-"
+}
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.adworks.android.demo"
+        applicationId "com.pop.bubbleshooter.globalbattle.casual"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -32,7 +35,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api ('com.kingsoft.shiyou:adworks:0.5.7@aar') {
+    api ('com.kingsoft.shiyou:adworks:0.6.1@aar') {
         transitive = true
     }
     implementation 'androidx.multidex:multidex:2.0.1'
