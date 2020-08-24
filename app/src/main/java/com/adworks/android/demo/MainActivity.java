@@ -197,12 +197,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAdworks(String appId) {
         activePlatform = appId;
-        setAdKeyForPlatform();
+//        setAdKeyForPlatform();
         adWorks.initAdWorkds(MainActivity.this, appId, new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
                 if (hasInitialized) {
+                    activePlatformBannerId = adWorks.getTypeMapAdIdList().get("banner");
+                    activePlatformRewardId = adWorks.getTypeMapAdIdList().get("reward");
+                    activePlatformInterstiticalId = adWorks.getTypeMapAdIdList().get("interstitial");
+                    adWorks.getTypeMapAdIdList().get("interstitial");
                     adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback);
                     adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback);
                     adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback);
