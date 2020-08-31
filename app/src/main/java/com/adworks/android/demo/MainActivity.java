@@ -13,10 +13,12 @@ import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
 
 public class MainActivity extends AppCompatActivity {
-
+    /**
+     * Adworks 详细行为日志 粗略级别 AdworksDebug 详尽级别 x-log
+     */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "test10004";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "test10005";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -198,18 +200,20 @@ public class MainActivity extends AppCompatActivity {
     private void initAdworks(String appId) {
         activePlatform = appId;
 //        setAdKeyForPlatform();
-        adWorks.initAdWorkds(MainActivity.this, appId, new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
                 if (hasInitialized) {
-                    activePlatformBannerId = adWorks.getTypeMapAdIdList().get("banner");
-                    activePlatformRewardId = adWorks.getTypeMapAdIdList().get("reward");
-                    activePlatformInterstiticalId = adWorks.getTypeMapAdIdList().get("interstitial");
-                    adWorks.getTypeMapAdIdList().get("interstitial");
-                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback);
-                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback);
-                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback);
+                    //获取当前所使用的的各类型广告ID
+                    activePlatformBannerId = adWorks.getAdTypeIdMap().get("banner");
+                    activePlatformRewardId = adWorks.getAdTypeIdMap().get("reward");
+                    activePlatformInterstiticalId = adWorks.getAdTypeIdMap().get("interstitial");
+                    //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
+                    //"main"接收广告回调的场景也可为""或者其他自定义标识信息
+                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback,"main");
+                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback,"main");
+                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback,"main");
                     changeBtnClickState();
                 }
             }
@@ -243,21 +247,23 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void testBanner() {
-        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId)) {
-            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout);
+        //"main"判断广告缓存的场景也可为""或者其他自定义标识信息
+        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
+            //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
+            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
         }
 
     }
 
     private void testReward() {
-        if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId)) {
-            adWorks.showRewardAd(this, activePlatformRewardId);
+        if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId,"main")) {
+            adWorks.showRewardAd(this, activePlatformRewardId,"main");
         }
     }
 
     private void testInterstitial() {
-        if (adWorks.isAdReady(this, activePlatformInterstiticalId)) {
-            adWorks.showInterstitialAd(this, activePlatformInterstiticalId);
+        if (adWorks.isAdReady(this, activePlatformInterstiticalId,"main")) {
+            adWorks.showInterstitialAd(this, activePlatformInterstiticalId,"main");
         }
     }
 
