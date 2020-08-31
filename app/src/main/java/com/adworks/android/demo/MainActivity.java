@@ -206,9 +206,9 @@ public class MainActivity extends AppCompatActivity {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
                 if (hasInitialized) {
                     //获取当前所使用的的各类型广告ID
-                    activePlatformBannerId = adWorks.getAdTypeIdMap().get("banner");
-                    activePlatformRewardId = adWorks.getAdTypeIdMap().get("reward");
-                    activePlatformInterstiticalId = adWorks.getAdTypeIdMap().get("interstitial");
+                    activePlatformBannerId = adWorks.getAdTypeIdMap().get(AdWorks.AD_BANNER);
+                    activePlatformRewardId = adWorks.getAdTypeIdMap().get(AdWorks.AD_REWARD);
+                    activePlatformInterstiticalId = adWorks.getAdTypeIdMap().get(AdWorks.AD_INTERSTITIAL);
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
                     adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback,"main");
