@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.applovin.sdk.AppLovinSdk;
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
@@ -18,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "test10005";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000005";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -227,23 +228,7 @@ public class MainActivity extends AppCompatActivity {
         mRewardButton.setEnabled(true);
     }
 
-    private void setAdKeyForPlatform() {
-        if (activePlatform.equals(IRONSOURCE_PLATFORM_APPID)) {
-            activePlatformBannerId = AdKey.TEST_IRONSOURCE_BANNER_ID;
-            activePlatformRewardId = AdKey.TEST_IRONSOURCE_REWARD_ID;
-            activePlatformInterstiticalId = AdKey.TEST_IRONSOURCE_INTERSTITICAL_ID;
-        }
-        if (activePlatform.equals(ADMOB_PLATFORM_APPID)) {
-            activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
-            activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
-            activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
-        }
-        if (activePlatform.equals(APPLOVINMAX_PLATFORM_APPID)) {
-            activePlatformBannerId = AdKey.TEST_APPLOVINMAX_BANNER_ID;
-            activePlatformRewardId = AdKey.TEST_APPLOVINMAX_REWARD_ID;
-            activePlatformInterstiticalId = AdKey.TEST_APPLOVINMAX_INTERSTITICAL_ID;
-        }
-    }
+
 
 
     private void testBanner() {

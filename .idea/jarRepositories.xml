@@ -36,5 +36,20 @@
       <option name="name" value="maven" />
       <option name="url" value="https://dl.bintray.com/ironsource-mobile/android-adapters" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven4" />
+      <option name="name" value="maven4" />
+      <option name="url" value="https://applovin.bintray.com/Android-Adapter-SDKs" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven3" />
+      <option name="name" value="maven3" />
+      <option name="url" value="https://chartboostmobile.bintray.com/Chartboost" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven5" />
+      <option name="name" value="maven5" />
+      <option name="url" value="https://adcolony.bintray.com/AdColony" />
+    </remote-repository>
   </component>
 </project>
