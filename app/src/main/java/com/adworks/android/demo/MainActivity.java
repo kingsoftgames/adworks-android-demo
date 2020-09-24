@@ -238,14 +238,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void testBanner() {
         //"main"判断广告缓存的场景也可为""或者其他自定义标识信息
-//        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
-//            //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
-//            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
-//        }else {
-//            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
-//        }
-        adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout, "main");
-
+        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
+            //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
+            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
+        }
     }
 
     private void testReward() {
