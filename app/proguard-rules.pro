@@ -79,7 +79,7 @@
 }
 
 -keep class com.kingsoft.shiyou.adworks.bean.** { *; }
-
+-keep class com.kingsoft.shiyou.adworks.offline.** { *; }
 -keep class com.kingsoft.shiyou.adworks.launcher.task.Worker
 -keep class com.kingsoft.shiyou.adworks.proxy.AdClusterDelegate
 
@@ -145,6 +145,7 @@ public <methods>;
 -keepclassmembers class com.applovin.sdk.AppLovinSdkSettings { private java.util.Map localSettings; }
 -keep class com.applovin.mediation.adapters.** { *; }
 -keep class com.applovin.mediation.adapter.**{ *; }
+-keep class com.applovin.communicator.**{ *; }
 
 #facebook
 -dontwarn com.facebook.ads.internal.**
@@ -209,3 +210,84 @@ public <methods>;
 # Google Android Advertising ID
 -keep class com.google.android.gms.internal.** { *; }
 -dontwarn com.google.android.gms.ads.identifier.**
+
+# For communication with AdColony's WebView
+-keepclassmembers class * {
+    @android.webkit.JavascriptInterface <methods>;
+}
+#mintegral
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.mintegral.** {*; }
+-keep interface com.mintegral.** {*; }
+-keep interface androidx.** { *; }
+-keep class androidx.** { *; }
+-keep public class * extends androidx.** { *; }
+-dontwarn com.mintegral.**
+-keep class **.R$* { public static final int mintegral*; }
+-keep class com.alphab.** {*; }
+-keep interface com.alphab.** {*; }
+
+#tapjoy
+-keep class com.tapjoy.** { *; }
+-keep class com.moat.** { *; }
+-keepattributes JavascriptInterface
+-keepattributes *Annotation*
+-keep class * extends java.util.ListResourceBundle {
+protected Object[][] getContents();
+}
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+public static final *** NULL;
+}
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+@com.google.android.gms.common.annotation.KeepName *;
+}
+-keepnames class * implements android.os.Parcelable {
+public static final ** CREATOR;
+}
+-keep class com.google.android.gms.ads.identifier.** { *; }
+-dontwarn com.tapjoy.**
+
+#inmobi
+-keepattributes SourceFile,LineNumberTable
+-keep class com.inmobi.** { *; }
+-keep public class com.google.android.gms.**
+-dontwarn com.google.android.gms.**
+-dontwarn com.squareup.picasso.**
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient{
+     public *;
+}
+-keep class com.google.android.gms.ads.identifier.AdvertisingIdClient$Info{
+     public *;
+}
+# skip the Picasso library classes
+-keep class com.squareup.picasso.** {*;}
+-dontwarn com.squareup.okhttp.**
+# skip Moat classes
+-keep class com.moat.** {*;}
+-dontwarn com.moat.**
+# skip IAB classes
+-keep class com.iab.** {*;}
+-dontwarn com.iab.**
+
+#chartboost
+-keep class com.chartboost.** { *; }
+
+#Pangle
+-keep class com.bytedance.sdk.openadsdk.** { *; }
+-keep public interface com.bytedance.sdk.openadsdk.downloadnew.** {*;}
+-keep class com.pgl.sys.ces.* {*;}
+
+#clickad
+-keep class xlfj.internal.dynamicloading.Mod { *** ***(***);*** ***();}
+-keep class xlfj.internal.dynamicloading.IDynamicLoader { public *; }
+-keep class xlfj.internal.dynamicloading.IComponent { public *; }
+-keep class xlfj.internal.dynamicloading.MPreferencesManager { public *; }
+-keep class xlfj.internal.dynamicloading.LogUtil { public *; }
+-keep class xlfj.internal.dynamicloading.IXRewardedVideoAd** {*;}
+-keep class xlfj.internal.dynamicloading.IXInterstitialAd** {*;}
+-keep class xlfj.internal.dynamicloading.IXBannerAd** {*;}
+-keep class xlfj.internal.dynamicloading.IXNativeAd** {*;}
+-keep class xlfj.internal.dynamicloading.AdSize {*;}
+-keep class xlfj.internal.view.MediaView {*;}

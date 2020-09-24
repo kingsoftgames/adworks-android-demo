@@ -21,11 +21,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'key0'
+            keyPassword 'Qq111111'
+            storeFile file("${rootProject.rootDir}/app/test.jks")
+            storePassword 'Qq111111'
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }
@@ -38,7 +47,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api ('com.kingsoft.shiyou:adworks:0.6.6@aar') {
+//    api ('com.kingsoft.shiyou:adworks-test:0.4.3') {
+//        transitive = true
+//    }
+    api ('com.kingsoft.shiyou:adworks-offline:0.6.8.1') {
         transitive = true
     }
     implementation 'androidx.multidex:multidex:2.0.1'

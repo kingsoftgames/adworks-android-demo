@@ -3,12 +3,14 @@ package com.adworks.android.demo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.applovin.sdk.AppLovinSdk;
+import com.google.android.gms.ads.AdView;
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
@@ -19,14 +21,14 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000005";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "test10001";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
     private String activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
     private String activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
     private Button mInterstiticalButton, mBannerButton;
-    private FrameLayout frameLayout;
+    private ViewGroup frameLayout;
     private Button mRewardButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
@@ -196,6 +198,11 @@ public class MainActivity extends AppCompatActivity {
                 testReward();
             }
         });
+        AdView adView = new AdView(this);
+
+        if (null == adView.getResponseInfo()) {
+            ToaUtils.toastShort(MainActivity.this, "666666666666");
+        }
     }
 
     private void initAdworks(String appId) {
@@ -212,9 +219,9 @@ public class MainActivity extends AppCompatActivity {
                     activePlatformInterstiticalId = adWorks.getAdTypeIdMap().get(AdWorks.AD_INTERSTITIAL);
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
-                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback,"main");
-                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback,"main");
-                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback,"main");
+                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback, "main");
+                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback, "main");
+                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback, "main");
                     changeBtnClickState();
                 }
             }
@@ -229,26 +236,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private void testBanner() {
         //"main"判断广告缓存的场景也可为""或者其他自定义标识信息
-        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
-            //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
-            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
-        }
+//        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
+//            //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
+//            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
+//        }else {
+//            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
+//        }
+        adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout, "main");
 
     }
 
     private void testReward() {
-        if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId,"main")) {
-            adWorks.showRewardAd(this, activePlatformRewardId,"main");
+        if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId, "main")) {
+            adWorks.showRewardAd(this, activePlatformRewardId, "main");
         }
     }
 
     private void testInterstitial() {
-        if (adWorks.isAdReady(this, activePlatformInterstiticalId,"main")) {
-            adWorks.showInterstitialAd(this, activePlatformInterstiticalId,"main");
+        if (adWorks.isAdReady(this, activePlatformInterstiticalId, "main")) {
+            adWorks.showInterstitialAd(this, activePlatformInterstiticalId, "main");
         }
     }
 
