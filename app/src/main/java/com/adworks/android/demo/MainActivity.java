@@ -11,9 +11,14 @@ import android.widget.RelativeLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -179,6 +184,10 @@ public class MainActivity extends AppCompatActivity {
         mInterstiticalButton = findViewById(R.id.btn_in);
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
+        List<String> testDeviceIds = Arrays.asList("24EC5BFA3EF9F2C96069599C6EBCCD91");
+        RequestConfiguration configuration =
+                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
+        MobileAds.setRequestConfiguration(configuration);
         initAdworks(APPLOVINMAX_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
