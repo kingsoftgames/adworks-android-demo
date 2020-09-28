@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "test10001";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "test10003";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -184,10 +184,6 @@ public class MainActivity extends AppCompatActivity {
         mInterstiticalButton = findViewById(R.id.btn_in);
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
-        List<String> testDeviceIds = Arrays.asList("24EC5BFA3EF9F2C96069599C6EBCCD91");
-        RequestConfiguration configuration =
-                new RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build();
-        MobileAds.setRequestConfiguration(configuration);
         initAdworks(APPLOVINMAX_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,11 +203,6 @@ public class MainActivity extends AppCompatActivity {
                 testReward();
             }
         });
-        AdView adView = new AdView(this);
-
-        if (null == adView.getResponseInfo()) {
-            ToaUtils.toastShort(MainActivity.this, "666666666666");
-        }
     }
 
     private void initAdworks(String appId) {
