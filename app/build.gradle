@@ -50,7 +50,7 @@ dependencies {
 //    api ('com.kingsoft.shiyou:adworks-test:0.4.3') {
 //        transitive = true
 //    }
-    api ('com.kingsoft.shiyou:adworks-offline:2.1') {
+    api ('com.kingsoft.shiyou.test:adworks-offline:0.7.4') {
         transitive = true
     }
     implementation 'androidx.multidex:multidex:2.0.1'

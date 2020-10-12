@@ -32,9 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
     private String activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
     private String activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
+    private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
     private ViewGroup frameLayout;
-    private Button mRewardButton;
+    private Button mNativeButton,mRewardButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
         @Override
@@ -175,7 +176,53 @@ public class MainActivity extends AppCompatActivity {
         public void onUserEarnedReward() {
         }
     };
+    private IAdLoadListener nativeCallback = new IAdLoadListener() {
+        @Override
+        public void onAdClosed() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_close));
+        }
 
+        @Override
+        public void onAdFailedToLoad(String errorCode) {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_load_fail) + "错误代码为" + errorCode);
+        }
+
+        @Override
+        public void onAdFailedToShow(String errorCode) {
+
+        }
+
+        @Override
+        public void onAdLeaveApplication() {
+
+        }
+
+
+        @Override
+        public void onAdOpened() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_open));
+        }
+
+        @Override
+        public void onAdLoaded() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_loaded));
+        }
+
+        @Override
+        public void onAdClicked() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_click));
+        }
+
+        @Override
+        public void onAdImpression() {
+
+        }
+
+        @Override
+        public void onUserEarnedReward() {
+
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -203,6 +250,13 @@ public class MainActivity extends AppCompatActivity {
                 testReward();
             }
         });
+        mNativeButton=findViewById(R.id.btn_native);
+        mNativeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testNative();
+            }
+        });
     }
 
     private void initAdworks(String appId) {
@@ -217,11 +271,13 @@ public class MainActivity extends AppCompatActivity {
                     activePlatformBannerId = adWorks.getAdTypeIdMap().get(AdWorks.AD_BANNER);
                     activePlatformRewardId = adWorks.getAdTypeIdMap().get(AdWorks.AD_REWARD);
                     activePlatformInterstiticalId = adWorks.getAdTypeIdMap().get(AdWorks.AD_INTERSTITIAL);
+                    activePlatformNativeId = adWorks.getAdTypeIdMap().get(AdWorks.AD_NATIVE);
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
                     adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback, "main");
                     adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback, "main");
                     adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback, "main");
+                    adWorks.loadNativeAd(MainActivity.this, activePlatformNativeId, nativeCallback, "main");
                     changeBtnClickState();
                 }
             }
@@ -233,6 +289,7 @@ public class MainActivity extends AppCompatActivity {
         mInterstiticalButton.setEnabled(true);
         mBannerButton.setEnabled(true);
         mRewardButton.setEnabled(true);
+        mNativeButton.setEnabled(true);
     }
 
 
@@ -253,6 +310,11 @@ public class MainActivity extends AppCompatActivity {
     private void testInterstitial() {
         if (adWorks.isAdReady(this, activePlatformInterstiticalId, "main")) {
             adWorks.showInterstitialAd(this, activePlatformInterstiticalId, "main");
+        }
+    }
+    private void testNative(){
+        if (AdWorks.getInstance().isAdReady(MainActivity.this, activePlatformNativeId, "main")) {
+            AdWorks.getInstance().showNativeAd(MainActivity.this, activePlatformNativeId, frameLayout, "main");
         }
     }
 

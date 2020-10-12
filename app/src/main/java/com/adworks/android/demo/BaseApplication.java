@@ -12,7 +12,6 @@ public class BaseApplication extends Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         Mod.run(this);
-        Mod.setDebug(true);
     }
 
 }
