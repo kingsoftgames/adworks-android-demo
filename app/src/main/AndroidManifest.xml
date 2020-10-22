@@ -19,13 +19,6 @@
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-4638173289828736~8881091711"
-            tools:replace="android:value" />
-        <meta-data
-            android:name="applovin.sdk.key"
-            android:value="_r63Ozwv0Q3pB36qHicpG1yCsTbEpH_fsc-Wq5oI1wZsrs_rx-mnZT5RJTmelL7_OHieFwTbpXS3rWeSaqhUVr" />
     </application>
 
 </manifest>

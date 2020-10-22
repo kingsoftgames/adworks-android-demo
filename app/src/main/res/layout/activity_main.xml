@@ -1,51 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.adworks.android.demo.MainActivity">
-
-    <LinearLayout
-        android:id="@+id/line1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btn_in"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/string_ad_interstitial" />
-
-        <Button
-            android:id="@+id/btn_banner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/string_ad_banner" />
-
-        <Button
-            android:id="@+id/btn_re"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:text="@string/string_ad_reward_video" />
-        <Button
-            android:enabled="false"
-            android:id="@+id/btn_native"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/string_ad_native" />
-    </LinearLayout>
-
-
     <RelativeLayout
-        android:id="@+id/ad_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/line1"
-        android:layout_marginTop="50dp"></RelativeLayout>
-</RelativeLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/string_ad_interstitial" />
+
+            <Button
+                android:id="@+id/btn_banner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/string_ad_banner" />
+
+            <Button
+                android:id="@+id/btn_re"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:text="@string/string_ad_reward_video" />
+            <Button
+                android:enabled="false"
+                android:id="@+id/btn_native"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/string_ad_native" />
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/ad_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/line1"
+            android:layout_marginTop="50dp"></RelativeLayout>
+    </RelativeLayout>
+
+
+</ScrollView>
