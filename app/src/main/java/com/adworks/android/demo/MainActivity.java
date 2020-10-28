@@ -274,10 +274,14 @@ public class MainActivity extends AppCompatActivity {
                     activePlatformNativeId = adWorks.getAdTypeIdMap().get(AdWorks.AD_NATIVE);
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
-                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback, "main");
-                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback, "main");
-                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback, "main");
-                    adWorks.loadNativeAd(MainActivity.this, activePlatformNativeId, nativeCallback, "main");
+                    adWorks.registerListenerByAdId(activePlatformBannerId,bannerCallback,"main");
+                    adWorks.registerListenerByAdId(activePlatformInterstiticalId,interstitialCallback,"main");
+                    adWorks.registerListenerByAdId(activePlatformNativeId,nativeCallback,"main");
+                    adWorks.registerListenerByAdId(activePlatformRewardId,rewardCallback,"main");
+//                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback, "main");
+//                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback, "main");
+//                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback, "main");
+//                    adWorks.loadNativeAd(MainActivity.this, activePlatformNativeId, nativeCallback, "main");
                     changeBtnClickState();
                 }
             }
