@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
     private ViewGroup frameLayout;
-    private Button mNativeButton,mRewardButton;
+    private Button mNativeButton, mRewardButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
         @Override
@@ -223,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -250,7 +251,7 @@ public class MainActivity extends AppCompatActivity {
                 testReward();
             }
         });
-        mNativeButton=findViewById(R.id.btn_native);
+        mNativeButton = findViewById(R.id.btn_native);
         mNativeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -262,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
     private void initAdworks(String appId) {
         activePlatform = appId;
 //        setAdKeyForPlatform();
-        adWorks.initAdWorks(MainActivity.this, appId, new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, "95271afb0cca7ef6b8244d9b9b4ce5e7ab5b318c",new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
@@ -274,10 +275,10 @@ public class MainActivity extends AppCompatActivity {
                     activePlatformNativeId = adWorks.getAdTypeIdMap().get(AdWorks.AD_NATIVE);
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
-                    adWorks.registerListenerByAdId(activePlatformBannerId,bannerCallback,"main");
-                    adWorks.registerListenerByAdId(activePlatformInterstiticalId,interstitialCallback,"main");
-                    adWorks.registerListenerByAdId(activePlatformNativeId,nativeCallback,"main");
-                    adWorks.registerListenerByAdId(activePlatformRewardId,rewardCallback,"main");
+                    adWorks.registerListenerByAdId(activePlatformBannerId, bannerCallback, "main");
+                    adWorks.registerListenerByAdId(activePlatformInterstiticalId, interstitialCallback, "main");
+                    adWorks.registerListenerByAdId(activePlatformNativeId, nativeCallback, "main");
+                    adWorks.registerListenerByAdId(activePlatformRewardId, rewardCallback, "main");
 //                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback, "main");
 //                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback, "main");
 //                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback, "main");
@@ -299,9 +300,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void testBanner() {
         //"main"判断广告缓存的场景也可为""或者其他自定义标识信息
-        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
+        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId, "main")) {
             //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
-            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
+            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout, "main");
         }
     }
 
@@ -316,7 +317,8 @@ public class MainActivity extends AppCompatActivity {
             adWorks.showInterstitialAd(this, activePlatformInterstiticalId, "main");
         }
     }
-    private void testNative(){
+
+    private void testNative() {
         if (AdWorks.getInstance().isAdReady(MainActivity.this, activePlatformNativeId, "main")) {
             AdWorks.getInstance().showNativeAd(MainActivity.this, activePlatformNativeId, frameLayout, "main");
         }
