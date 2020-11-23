@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
     private void initAdworks(String appId) {
         activePlatform = appId;
 //        setAdKeyForPlatform();
-        adWorks.initAdWorks(MainActivity.this, appId, "95271afb0cca7ef6b8244d9b9b4ce5e7ab5b318c",new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, null,new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
@@ -279,15 +279,11 @@ public class MainActivity extends AppCompatActivity {
                     adWorks.registerListenerByAdId(activePlatformInterstiticalId, interstitialCallback, "main");
                     adWorks.registerListenerByAdId(activePlatformNativeId, nativeCallback, "main");
                     adWorks.registerListenerByAdId(activePlatformRewardId, rewardCallback, "main");
-//                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback, "main");
-//                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback, "main");
-//                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback, "main");
-//                    adWorks.loadNativeAd(MainActivity.this, activePlatformNativeId, nativeCallback, "main");
+
                     changeBtnClickState();
                 }
             }
         });
-
     }
 
     private void changeBtnClickState() {
