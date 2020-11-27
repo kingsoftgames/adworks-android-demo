@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "test20002";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "test30001";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -263,20 +263,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAdworks(String appId) {
         activePlatform = appId;
-//        setAdKeyForPlatform();
         adWorks.initAdWorks(MainActivity.this, appId, null,new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
                 if (hasInitialized) {
-                    //获取当前所使用的的各类型广告ID
 
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
-                    adWorks.registerListenerByAdId(AdUnits.AD_BANNER, bannerCallback, "main");
-                    adWorks.registerListenerByAdId(AdUnits.AD_REWARD, rewardCallback, "main");
-                    adWorks.registerListenerByAdId(AdUnits.AD_INTERSTITIAL, interstitialCallback, "main");
-                    adWorks.registerListenerByAdId(AdUnits.AD_NATIVE, nativeCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_BANNER, bannerCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_REWARD, rewardCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_INTERSTITIAL, interstitialCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_NATIVE, nativeCallback, "main");
 
                     changeBtnClickState();
                 }
