@@ -8,9 +8,12 @@ applovin {
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
     defaultConfig {
-        applicationId "com.pop.bubbleshooter.globalbattle.casual"
+        applicationId "com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
@@ -18,11 +21,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
+    signingConfigs {
+        releaseConfig {
+            keyAlias 'key0'
+            keyPassword 'Qq111111'
+            storeFile file("${rootProject.rootDir}/app/test.jks")
+            storePassword 'Qq111111'
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
     }
 }
@@ -35,7 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api ('com.kingsoft.shiyou:adworks:0.6.3@aar') {
+    api ('com.kingsoft.shiyou:adworks:0.8.2.1') {
         transitive = true
     }
     implementation 'androidx.multidex:multidex:2.0.1'

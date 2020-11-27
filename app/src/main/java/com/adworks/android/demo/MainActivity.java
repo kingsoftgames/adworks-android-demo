@@ -3,14 +3,23 @@ package com.adworks.android.demo;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.RequestConfiguration;
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
+import com.kingsoft.shiyou.adworks.bean.AdUnits;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -18,15 +27,16 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "test10005";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "test30001";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
     private String activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
     private String activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
+    private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
-    private FrameLayout frameLayout;
-    private Button mRewardButton;
+    private ViewGroup frameLayout;
+    private Button mNativeButton, mRewardButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
         @Override
@@ -167,6 +177,53 @@ public class MainActivity extends AppCompatActivity {
         public void onUserEarnedReward() {
         }
     };
+    private IAdLoadListener nativeCallback = new IAdLoadListener() {
+        @Override
+        public void onAdClosed() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_close));
+        }
+
+        @Override
+        public void onAdFailedToLoad(String errorCode) {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_load_fail) + "错误代码为" + errorCode);
+        }
+
+        @Override
+        public void onAdFailedToShow(String errorCode) {
+
+        }
+
+        @Override
+        public void onAdLeaveApplication() {
+
+        }
+
+
+        @Override
+        public void onAdOpened() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_open));
+        }
+
+        @Override
+        public void onAdLoaded() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_loaded));
+        }
+
+        @Override
+        public void onAdClicked() {
+            ToaUtils.toastShort(MainActivity.this, getString(R.string.string_native_click));
+        }
+
+        @Override
+        public void onAdImpression() {
+
+        }
+
+        @Override
+        public void onUserEarnedReward() {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,76 +252,70 @@ public class MainActivity extends AppCompatActivity {
                 testReward();
             }
         });
+        mNativeButton = findViewById(R.id.btn_native);
+        mNativeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                testNative();
+            }
+        });
     }
 
     private void initAdworks(String appId) {
         activePlatform = appId;
-//        setAdKeyForPlatform();
-        adWorks.initAdWorks(MainActivity.this, appId, new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, null,new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
                 if (hasInitialized) {
-                    //获取当前所使用的的各类型广告ID
-                    activePlatformBannerId = adWorks.getAdTypeIdMap().get(AdWorks.AD_BANNER);
-                    activePlatformRewardId = adWorks.getAdTypeIdMap().get(AdWorks.AD_REWARD);
-                    activePlatformInterstiticalId = adWorks.getAdTypeIdMap().get(AdWorks.AD_INTERSTITIAL);
+
                     //adWorks.loadBannerAd目前为注册接收各类型广告生命周期回调
                     //"main"接收广告回调的场景也可为""或者其他自定义标识信息
-                    adWorks.loadBannerAd(MainActivity.this, activePlatformBannerId, bannerCallback,"main");
-                    adWorks.loadRewardAd(MainActivity.this, activePlatformRewardId, rewardCallback,"main");
-                    adWorks.loadInterstitialAd(MainActivity.this, activePlatformInterstiticalId, interstitialCallback,"main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_BANNER, bannerCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_REWARD, rewardCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_INTERSTITIAL, interstitialCallback, "main");
+                    adWorks.registerListenerByAdType(AdUnits.AD_NATIVE, nativeCallback, "main");
+
                     changeBtnClickState();
                 }
             }
         });
-
     }
 
     private void changeBtnClickState() {
         mInterstiticalButton.setEnabled(true);
         mBannerButton.setEnabled(true);
         mRewardButton.setEnabled(true);
+        mNativeButton.setEnabled(true);
     }
 
-    private void setAdKeyForPlatform() {
-        if (activePlatform.equals(IRONSOURCE_PLATFORM_APPID)) {
-            activePlatformBannerId = AdKey.TEST_IRONSOURCE_BANNER_ID;
-            activePlatformRewardId = AdKey.TEST_IRONSOURCE_REWARD_ID;
-            activePlatformInterstiticalId = AdKey.TEST_IRONSOURCE_INTERSTITICAL_ID;
+
+    private void testInterstitial() {
+        if (adWorks.isAdReady(this, AdUnits.AD_INTERSTITIAL, "main")) {
+            adWorks.showInterstitialAd(this,  "main");
         }
-        if (activePlatform.equals(ADMOB_PLATFORM_APPID)) {
-            activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
-            activePlatformRewardId = AdKey.TEST_ADMOB_REWARD_ID;
-            activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
+    }
+
+    private void testReward() {
+        if (AdWorks.getInstance().isAdReady(this, AdUnits.AD_REWARD, "main")) {
+            adWorks.showRewardAd(this,  "main");
         }
-        if (activePlatform.equals(APPLOVINMAX_PLATFORM_APPID)) {
-            activePlatformBannerId = AdKey.TEST_APPLOVINMAX_BANNER_ID;
-            activePlatformRewardId = AdKey.TEST_APPLOVINMAX_REWARD_ID;
-            activePlatformInterstiticalId = AdKey.TEST_APPLOVINMAX_INTERSTITICAL_ID;
-        }
+
     }
 
 
     private void testBanner() {
-        //"main"判断广告缓存的场景也可为""或者其他自定义标识信息
-        if (adWorks.isAdReady(MainActivity.this, activePlatformBannerId,"main")) {
-            //"main"展示广告缓存的场景也可为""或者其他自定义标识信息
-            adWorks.showBannerAd(MainActivity.this, activePlatformBannerId, Gravity.CENTER, frameLayout,"main");
+        if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_BANNER, "main")) {
+            AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, null, "main");
         }
 
     }
-
-    private void testReward() {
-        if (AdWorks.getInstance().isAdReady(this, activePlatformRewardId,"main")) {
-            adWorks.showRewardAd(this, activePlatformRewardId,"main");
+    private void testNative(){
+        if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_NATIVE, "main")) {
+            AdWorks.getInstance().showNativeAd(MainActivity.this, frameLayout, "main");
         }
     }
 
-    private void testInterstitial() {
-        if (adWorks.isAdReady(this, activePlatformInterstiticalId,"main")) {
-            adWorks.showInterstitialAd(this, activePlatformInterstiticalId,"main");
-        }
-    }
+
 
 }

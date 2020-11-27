@@ -25,6 +25,21 @@ allprojects {
         maven {
             url 'https://maven-mirror.shiyou.kingsoft.com/repository/public/'
         }
+        maven {
+            url 'http://10.89.130.37:8081/repository/maven-releases/'
+        }
+        maven {
+            url 'https://dl.bintray.com/ironsource-mobile/android-adapters'
+        }
+        maven {
+            url 'https://chartboostmobile.bintray.com/Chartboost'
+        }
+        maven {
+            url "https://applovin.bintray.com/Android-Adapter-SDKs"
+        }
+        maven {
+            url "https://adcolony.bintray.com/AdColony"
+        }
         google()
         jcenter()
     }

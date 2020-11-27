@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">AdWorksDemo</string>
+    <string name="string_ad_native">原生广告</string>
+    <string name="string_native_close">native关闭</string>
+    <string name="string_native_load_fail">native加载失败</string>
+    <string name="string_native_left_app">native离开应用</string>
+    <string name="string_native_open">native打开</string>
+    <string name="string_native_loaded">native加载成功</string>
+    <string name="string_native_click">native点击</string>
     <string name="string_interstitial_close">插屏关闭</string>
     <string name="string_interstitial_load_fail">插屏加载失败</string>
     <string name="string_interstitial_load_success">插屏加载成功</string>
