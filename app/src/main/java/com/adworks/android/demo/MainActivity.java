@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
     private void initAdworks(String appId) {
         activePlatform = appId;
 //        setAdKeyForPlatform();
-        adWorks.initAdWorks(MainActivity.this, appId, null, new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, "95271afb0cca7ef6b8244d9b9b4ce5e7ab5b318c", new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
