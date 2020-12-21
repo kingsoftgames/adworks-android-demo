@@ -5,21 +5,13 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
 import com.kingsoft.shiyou.adworks.bean.AdUnits;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -259,11 +251,12 @@ public class MainActivity extends AppCompatActivity {
                 testNative();
             }
         });
+        changeBtnClickState();
     }
 
     private void initAdworks(String appId) {
         activePlatform = appId;
-        adWorks.initAdWorks(MainActivity.this, appId, null,new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, null, new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
@@ -292,13 +285,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void testInterstitial() {
         if (adWorks.isAdReady(this, AdUnits.AD_INTERSTITIAL, "main")) {
-            adWorks.showInterstitialAd(this,  "main");
+            adWorks.showInterstitialAd(this, "main");
         }
     }
 
     private void testReward() {
         if (AdWorks.getInstance().isAdReady(this, AdUnits.AD_REWARD, "main")) {
-            adWorks.showRewardAd(this,  "main");
+            adWorks.showRewardAd(this, "main");
         }
 
     }
@@ -310,12 +303,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    private void testNative(){
+
+    private void testNative() {
         if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_NATIVE, "main")) {
             AdWorks.getInstance().showNativeAd(MainActivity.this, frameLayout, "main");
         }
     }
-
 
 
 }
