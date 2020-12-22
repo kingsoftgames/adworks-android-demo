@@ -5,29 +5,21 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
-import com.kingsoft.shiyou.adworks.AdWorks;
-import com.kingsoft.shiyou.adworks.IAdLoadListener;
-import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
-import com.kingsoft.shiyou.adworks.bean.AdUnits;
+import com.kingsoft.shiyou.domestic.AdWorks;
+import com.kingsoft.shiyou.domestic.IAdLoadListener;
+import com.kingsoft.shiyou.domestic.IAdworksInitializeCallback;
+import com.kingsoft.shiyou.domestic.bean.AdUnits;
 
-import java.util.Arrays;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     /**
      * Adworks 详细行为日志 粗略级别 AdworksDebug 详尽级别 x-log
      */
-    private static final String ADMOB_PLATFORM_APPID = "test10001";
-    private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "test30001";
+
+    private static final String APPLOVINMAX_PLATFORM_APPID = "test40001";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -263,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAdworks(String appId) {
         activePlatform = appId;
-        adWorks.initAdWorks(MainActivity.this, appId, null,new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
@@ -292,13 +284,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void testInterstitial() {
         if (adWorks.isAdReady(this, AdUnits.AD_INTERSTITIAL, "main")) {
-            adWorks.showInterstitialAd(this,  "main");
+            adWorks.showInterstitialAd(this, "main");
         }
     }
 
     private void testReward() {
         if (AdWorks.getInstance().isAdReady(this, AdUnits.AD_REWARD, "main")) {
-            adWorks.showRewardAd(this,  "main");
+            adWorks.showRewardAd(this, "main");
         }
 
     }
@@ -310,12 +302,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-    private void testNative(){
+
+    private void testNative() {
         if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_NATIVE, "main")) {
             AdWorks.getInstance().showNativeAd(MainActivity.this, frameLayout, "main");
         }
     }
-
 
 
 }
