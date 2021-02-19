@@ -14,7 +14,7 @@ android {
     }
     defaultConfig {
         applicationId "com.sukhavati.gotoplaying.bubble.BubbleShooter.mint.mi"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -47,7 +47,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    api ('com.kingsoft.shiyou:adworks-offline:1.0.2') {
+    api ('com.kingsoft.shiyou:adworks:1.1.6-SNAPSHOT') {
         transitive = true
     }
     implementation 'androidx.multidex:multidex:2.0.1'
