@@ -41,6 +41,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/string_ad_native" />
+            <Button
+                android:enabled="true"
+                android:id="@+id/btn_webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/web_activity" />
         </LinearLayout>
 
 

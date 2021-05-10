@@ -33,4 +33,5 @@
     <string name="string_ad_interstitial">跳转页面显示插屏</string>
     <string name="string_ad_reward_video">观看激励视频可以获得奖励哦</string>
     <string name="string_ad_banner">显示底部banner</string>
+    <string name="web_activity">JSTag测试（忽略）</string>
 </resources>

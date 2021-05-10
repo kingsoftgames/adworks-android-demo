@@ -1,5 +1,6 @@
 package com.adworks.android.demo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000013";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000023";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
     private ViewGroup frameLayout;
-    private Button mNativeButton, mRewardButton;
+    private Button mNativeButton, mRewardButton,mWebButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
         @Override
@@ -225,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         mInterstiticalButton = findViewById(R.id.btn_in);
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
+        mWebButton = findViewById(R.id.btn_webview);
         initAdworks(APPLOVINMAX_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,6 +251,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 testNative();
+            }
+        });
+        mWebButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,WebViewActivity.class));
             }
         });
     }
