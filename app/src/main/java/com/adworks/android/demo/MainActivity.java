@@ -227,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
         mWebButton = findViewById(R.id.btn_webview);
-        initAdworks(APPLOVINMAX_PLATFORM_APPID);
+//        initAdworks(APPLOVINMAX_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

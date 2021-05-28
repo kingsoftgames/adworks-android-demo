@@ -51,5 +51,7 @@ dependencies {
         transitive = true
     }
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.1'
+    implementation 'com.danikula:videocache:2.7.1'
 
 }

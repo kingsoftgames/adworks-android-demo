@@ -7,7 +7,7 @@ buildscript {
             url 'https://maven.fabric.io/public'
         }
         repositories {
-            maven { url 'https://applovin.bintray.com/Quality-Service' }
+            maven { url 'https://artifacts.applovin.com/android' }
         }
     }
     dependencies {
