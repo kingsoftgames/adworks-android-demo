@@ -7,7 +7,7 @@ buildscript {
             url 'https://maven.fabric.io/public'
         }
         repositories {
-            maven { url 'https://applovin.bintray.com/Quality-Service' }
+            maven { url 'https://artifacts.applovin.com/android' }
         }
     }
     dependencies {
@@ -25,9 +25,7 @@ allprojects {
         maven {
             url 'https://maven-mirror.shiyou.kingsoft.com/repository/public/'
         }
-        maven {
-            url 'http://10.89.130.37:8081/repository/maven-releases/'
-        }
+
         maven {
             url 'https://dl.bintray.com/ironsource-mobile/android-adapters'
         }
