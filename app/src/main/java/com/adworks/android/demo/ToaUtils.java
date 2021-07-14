@@ -1,5 +1,6 @@
 package com.adworks.android.demo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -9,7 +10,12 @@ import android.widget.Toast;
  */
 public class ToaUtils {
 
-    public static void toastShort(Context context,String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    public static void toastShort(Activity context, String msg) {
+        context.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

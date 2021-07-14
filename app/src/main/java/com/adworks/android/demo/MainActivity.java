@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private String activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
     private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
-    private ViewGroup frameLayout;
+    private FrameLayout frameLayout;
     private Button mNativeButton, mRewardButton,mWebButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
@@ -227,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
         mWebButton = findViewById(R.id.btn_webview);
-//        initAdworks(APPLOVINMAX_PLATFORM_APPID);
+        initAdworks(APPLOVINMAX_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -306,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void testBanner() {
         if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_BANNER, "main")) {
-            AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, null, "main");
+            AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, frameLayout, "main");
         }
 
     }

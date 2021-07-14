@@ -57,7 +57,6 @@ public class WebViewActivity extends AppCompatActivity {
         VideoPreLoader videoPreLoader = new VideoPreLoader();
         if (!proxy.isCached(videoUrl)) {
             videoPreLoader.addPreloadURL(proxyUrl);
-
         }
 
         playerView.setExtendListener(mIMediaPlayerExtendListener);
