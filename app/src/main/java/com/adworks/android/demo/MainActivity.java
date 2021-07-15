@@ -9,10 +9,13 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.applovin.sdk.AppLovinSdk;
 import com.kingsoft.shiyou.adworks.AdWorks;
 import com.kingsoft.shiyou.adworks.IAdLoadListener;
 import com.kingsoft.shiyou.adworks.IAdworksInitializeCallback;
 import com.kingsoft.shiyou.adworks.bean.AdUnits;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -263,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initAdworks(String appId) {
         activePlatform = appId;
+        AppLovinSdk.getInstance(MainActivity.this).getSettings().setTestDeviceAdvertisingIds(Arrays.asList("c362ae8b-e5e4-41a6-8165-115bc57506bf"));
         adWorks.initAdWorks(MainActivity.this, appId, "95271afb0cca7ef6b8244d9b9b4ce5e7ab5b318c", new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
