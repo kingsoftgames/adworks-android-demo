@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000019";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000020";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private String activePlatformInterstiticalId = AdKey.TEST_ADMOB_INTERSTITICAL_ID;
     private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
-    private ViewGroup frameLayout;
+    private FrameLayout frameLayout;
     private Button mNativeButton, mRewardButton,mWebButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
@@ -310,7 +311,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void testBanner() {
         if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_BANNER, "main")) {
-            AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, null, "main");
+            FrameLayout frameLayout = new FrameLayout(MainActivity.this);
+            int width = FrameLayout.LayoutParams.MATCH_PARENT;
+            int height = FrameLayout.LayoutParams.WRAP_CONTENT;
+            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(width, height);
+            layoutParams.gravity = Gravity.BOTTOM;
+            layoutParams.bottomMargin =400;
+            layoutParams.setMarginStart(32);
+            layoutParams.setMarginEnd(32);
+            addContentView(frameLayout,layoutParams);
+            AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, frameLayout, "main");
         }
 
     }
