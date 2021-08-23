@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private static final String ADMOB_PLATFORM_APPID = "test10001";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
-    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000020";
+    private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000027";
 
     private String activePlatform = APPLOVINMAX_PLATFORM_APPID;
     private String activePlatformBannerId = AdKey.TEST_ADMOB_BANNER_ID;
@@ -268,6 +268,7 @@ public class MainActivity extends AppCompatActivity {
     private void initAdworks(String appId) {
         activePlatform = appId;
         AppLovinSdk.getInstance(MainActivity.this).getSettings().setTestDeviceAdvertisingIds(Arrays.asList("c362ae8b-e5e4-41a6-8165-115bc57506bf"));
+        AppLovinSdk.getInstance(MainActivity.this).getSettings().setVerboseLogging(false);
         adWorks.initAdWorks(MainActivity.this, appId, "95271afb0cca7ef6b8244d9b9b4ce5e7ab5b318c", new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
