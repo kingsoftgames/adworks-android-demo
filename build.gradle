@@ -25,20 +25,21 @@ allprojects {
         maven {
             url 'https://maven.shiyou.kingsoft.com/repository/public/'
         }
-        maven { url 'https://mvn.shalltry.com/repository/maven-public/' }
-        maven { url 'https://mvn.shalltry.com/repository/game-releases/' }
-        maven {
-            url 'https://android-sdk.is.com/'
-        }
+        //topon
         maven {
             url 'https://anythink.jfrog.io/artifactory/android_sdk'
         }
+        //Ironsource
         maven {
             url 'https://android-sdk.is.com/'
         }
+        //applovin max
+        maven {
+            url 'https://artifacts.applovin.com/android'
+        }
+
         maven { url "https://sdk.tapjoy.com/"}
         maven {url 'https://artifact.bytedance.com/repository/pangle'}
-
         google()
         jcenter()
     }

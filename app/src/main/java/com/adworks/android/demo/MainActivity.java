@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Adworks 详细行为日志 粗略级别 AdworksDebug 详尽级别 x-log
      */
-    private static final String ADMOB_PLATFORM_APPID = "test10001";
+    private static final String ADMOB_PLATFORM_APPID = "Adworks100000028";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
     private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000027";
 
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private String activePlatformNativeId = "";
     private Button mInterstiticalButton, mBannerButton;
     private FrameLayout frameLayout;
-    private Button mNativeButton, mRewardButton,mWebButton;
+    private Button mNativeButton, mRewardButton, mWebButton;
     private AdWorks adWorks = AdWorks.getInstance();
     private IAdLoadListener bannerCallback = new IAdLoadListener() {
         @Override
@@ -231,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         mBannerButton = findViewById(R.id.btn_banner);
         mRewardButton = findViewById(R.id.btn_re);
         mWebButton = findViewById(R.id.btn_webview);
-        initAdworks(APPLOVINMAX_PLATFORM_APPID);
+        initAdworks(ADMOB_PLATFORM_APPID);
         mInterstiticalButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         mWebButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,WebViewActivity.class));
+                startActivity(new Intent(MainActivity.this, WebViewActivity.class));
             }
         });
     }
@@ -269,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
         activePlatform = appId;
         AppLovinSdk.getInstance(MainActivity.this).getSettings().setTestDeviceAdvertisingIds(Arrays.asList("c362ae8b-e5e4-41a6-8165-115bc57506bf"));
         AppLovinSdk.getInstance(MainActivity.this).getSettings().setVerboseLogging(false);
-        adWorks.initAdWorks(MainActivity.this, appId, "95271afb0cca7ef6b8244d9b9b4ce5e7ab5b318c", new IAdworksInitializeCallback() {
+        adWorks.initAdWorks(MainActivity.this, appId, "", new IAdworksInitializeCallback() {
             @Override
             public void onInitializeCallback(boolean hasInitialized) {
                 ToaUtils.toastShort(MainActivity.this, "hasInitialized: " + hasInitialized);
@@ -297,39 +296,29 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void testInterstitial() {
-        if (adWorks.isAdReady(this, AdUnits.AD_INTERSTITIAL, "main")) {
-            adWorks.showInterstitialAd(this, "main");
-        }
+        adWorks.showInterstitialAd(this, "main");
     }
 
     private void testReward() {
-        if (AdWorks.getInstance().isAdReady(this, AdUnits.AD_REWARD, "main")) {
-            adWorks.showRewardAd(this, "main");
-        }
-
+        adWorks.showRewardAd(this, "main");
     }
 
 
     private void testBanner() {
-        if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_BANNER, "main")) {
-            FrameLayout frameLayout = new FrameLayout(MainActivity.this);
-            int width = FrameLayout.LayoutParams.MATCH_PARENT;
-            int height = FrameLayout.LayoutParams.WRAP_CONTENT;
-            FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(width, height);
-            layoutParams.gravity = Gravity.BOTTOM;
-            layoutParams.bottomMargin =400;
-            layoutParams.setMarginStart(32);
-            layoutParams.setMarginEnd(32);
-            addContentView(frameLayout,layoutParams);
-            AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, frameLayout, "main");
-        }
-
+        FrameLayout frameLayout = new FrameLayout(MainActivity.this);
+        int width = FrameLayout.LayoutParams.MATCH_PARENT;
+        int height = FrameLayout.LayoutParams.WRAP_CONTENT;
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(width, height);
+        layoutParams.gravity = Gravity.BOTTOM;
+        layoutParams.bottomMargin = 400;
+        layoutParams.setMarginStart(32);
+        layoutParams.setMarginEnd(32);
+        addContentView(frameLayout, layoutParams);
+        AdWorks.getInstance().showBannerAd(MainActivity.this, Gravity.CENTER, frameLayout, "main");
     }
 
     private void testNative() {
-        if (AdWorks.getInstance().isAdReady(MainActivity.this, AdUnits.AD_NATIVE, "main")) {
-            AdWorks.getInstance().showNativeAd(MainActivity.this, frameLayout, "main");
-        }
+        AdWorks.getInstance().showNativeAd(MainActivity.this, frameLayout, "main");
     }
 
 
