@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Adworks 详细行为日志 粗略级别 AdworksDebug 详尽级别 x-log
      */
-    private static final String ADMOB_PLATFORM_APPID = "Adworks100000028";
+    private static final String ADMOB_PLATFORM_APPID = "Adworks100000002";
     private static final String IRONSOURCE_PLATFORM_APPID = "test10002";
     private static final String APPLOVINMAX_PLATFORM_APPID = "Adworks100000027";
 

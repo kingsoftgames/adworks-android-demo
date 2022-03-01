@@ -18,7 +18,8 @@
             android:value="ca-app-pub-2270136017335510~2873695605"
             tools:replace="android:value" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
